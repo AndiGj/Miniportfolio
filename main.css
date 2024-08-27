@@ -1,0 +1,61 @@
+ 
+body{
+    color: black;
+    background-color: white;
+}
+.link a{
+ 	text-decoration: none;
+	 color: black;
+}
+ul{
+	list-style-type: none;
+	float: left;
+	display: flex;
+	padding: 10px;
+
+}
+li{
+	text-align: center;
+
+}
+.link{
+	justify-content: right;
+	border: solid black 5px;
+
+
+}
+.rubrik{
+	border: solid 5px black;
+	width: 25%;
+    margin: auto;
+    height: 20rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+
+#mig{
+	text-align: center;
+}
+
+#project{
+	text-align: center;
+}
+
+.undertext-bild{
+	color: grey;
+}
+
+.cat{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.darkMode{
+    color: white;
+    background-color: black;
+}
+.linkDarkMode{
+	text-decoration: none;
+	color: white;
+}
