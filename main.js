@@ -5,6 +5,7 @@ function toggleTheme() {
     isDarkMode = !isDarkMode;
     const body = document.body;
     const themeToggle = document.querySelector('.theme-toggle i');
+    const navbar = document.querySelector('.navbar');
     
     if (isDarkMode) {
         body.setAttribute('data-theme', 'dark');
@@ -14,6 +15,14 @@ function toggleTheme() {
         body.removeAttribute('data-theme');
         themeToggle.className = 'fas fa-moon';
         localStorage.setItem('theme', 'light');
+    }
+
+    // Immediately apply the correct navbar background without waiting for scroll
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > 100) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
     }
 }
 
@@ -89,23 +98,20 @@ function initializeNavbarScroll() {
     const heroSection = document.querySelector('.hero');
     let lastScrollTop = 0;
 
-    window.addEventListener('scroll', () => {
+    const applyNavbarState = () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const heroHeight = heroSection ? heroSection.offsetHeight : 0;
-        
-        // Navbar background effect
         if (scrollTop > 100) {
-            navbar.style.background = isDarkMode 
-                ? 'rgba(15, 23, 42, 0.98)' 
-                : 'rgba(255, 255, 255, 0.98)';
+            navbar.classList.add('scrolled');
         } else {
-            navbar.style.background = isDarkMode 
-                ? 'rgba(15, 23, 42, 0.95)' 
-                : 'rgba(255, 255, 255, 0.95)';
+            navbar.classList.remove('scrolled');
         }
-
         lastScrollTop = scrollTop;
-    });
+    };
+
+    window.addEventListener('scroll', applyNavbarState);
+    // Apply once on load in case the page is restored with scroll
+    applyNavbarState();
 }
 
 
